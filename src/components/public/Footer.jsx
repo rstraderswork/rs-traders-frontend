@@ -38,10 +38,10 @@ export default function Footer() {
           {/* Contact */}
           <div>
             <h4 className="font-bold text-white mb-4">Contact</h4>
-            <p className="text-sm mb-2">📧 rajesh@rstaders.com</p>
-            <p className="text-sm mb-2">📞 +91-XXXXX XXXXX</p>
+            <p className="text-sm mb-2">📧 rstraderswork@gmail.com</p>
+            <p className="text-sm mb-2">📞 +91-9906353768</p>
             <a 
-              href="https://wa.me/919876543210" 
+              href="https://wa.me/919906353768" 
               target="_blank" 
               rel="noopener noreferrer"
               className="inline-block mt-4 px-4 py-2 bg-green-600 hover:bg-green-700 rounded-lg text-sm font-medium transition"
