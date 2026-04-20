@@ -20,7 +20,7 @@ export default function Navbar() {
           </div>
           
           <div className="hidden md:flex gap-4 items-center">
-            <a href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer" className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition text-sm font-medium">
+            <a href="https://wa.me/919906353768" target="_blank" rel="noopener noreferrer" className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition text-sm font-medium">
               📞 Call Us
             </a>
             <Link to="/admin/login" className="text-gray-600 hover:text-gray-900 text-sm font-medium">Admin</Link>
@@ -45,7 +45,7 @@ export default function Navbar() {
             <Link to="/booking" className="block px-4 py-2 text-gray-700 hover:bg-gray-50">Booking</Link>
             <a href="#contact" className="block px-4 py-2 text-gray-700 hover:bg-gray-50">Contact</a>
             <div className="px-4 pt-2 flex gap-2">
-              <a href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer" className="flex-1 bg-blue-600 text-white px-3 py-2 rounded-lg text-center text-sm font-medium hover:bg-blue-700">Call Us</a>
+              <a href="https://wa.me/919906353768" target="_blank" rel="noopener noreferrer" className="flex-1 bg-blue-600 text-white px-3 py-2 rounded-lg text-center text-sm font-medium hover:bg-blue-700">Call Us</a>
               <Link to="/admin/login" className="flex-1 bg-gray-200 text-gray-900 px-3 py-2 rounded-lg text-center text-sm font-medium hover:bg-gray-300">Admin</Link>
             </div>
           </div>
