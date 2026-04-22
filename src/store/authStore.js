@@ -6,10 +6,15 @@ const useAuthStore = create((set) => ({
   user: null,
   
   login: async (email, password) => {
-    const { data } = await api.post('/auth/login', { email, password })
-    localStorage.setItem('token', data.token)
-    set({ token: data.token, user: data.user })
-    return data
+    try {
+      const { data } = await api.post('/auth/login', { email, password })
+      localStorage.setItem('token', data.token)
+      set({ token: data.token, user: data.user })
+      return data
+    } catch (error) {
+      console.error('Login error:', error.response?.data || error.message)
+      throw error
+    }
   },
   
   logout: () => {

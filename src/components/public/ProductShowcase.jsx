@@ -1,12 +1,13 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import useProductStore from '../../store/productStore'
 import ProductCard from '../common/ProductCard'
 
 export default function ProductShowcase() {
-  const { products, loading, fetchProducts } = useProductStore()
+  const { products, loading, error, fetchProducts } = useProductStore()
   const [selectedCategory, setSelectedCategory] = useState('All')
 
   useEffect(() => {
+    console.log('ProductShowcase mounted, fetching products...')
     fetchProducts()
   }, [])
 
@@ -45,6 +46,19 @@ export default function ProductShowcase() {
           <div className="text-center">
             <div className="text-6xl mb-4 animate-bounce">📦</div>
             <p className="text-gray-600 font-medium">Loading products...</p>
+          </div>
+        </div>
+      ) : error ? (
+        <div className="flex items-center justify-center py-20">
+          <div className="text-center">
+            <div className="text-6xl mb-4">⚠️</div>
+            <p className="text-red-600 font-medium">Error: {error}</p>
+            <button
+              onClick={() => fetchProducts()}
+              className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+            >
+              Retry
+            </button>
           </div>
         </div>
       ) : filtered.length === 0 ? (

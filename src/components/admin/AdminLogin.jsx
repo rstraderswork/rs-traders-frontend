@@ -17,11 +17,17 @@ export default function AdminLogin() {
     setError('')
 
     try {
-      await login(email, password)
-      navigate('/admin/dashboard')
+      console.log('Attempting login with:', email)
+      const result = await login(email, password)
+      console.log('Login successful:', result)
+      // Give user a moment to see success before redirecting
+      setTimeout(() => {
+        navigate('/admin/dashboard')
+      }, 500)
     } catch (err) {
-      setError(err.response?.data?.message || 'Login failed. Please check your credentials.')
-    } finally {
+      const errorMessage = err.response?.data?.error || err.message || 'Login failed. Please check your credentials.'
+      console.error('Login error:', errorMessage, err.response?.data)
+      setError(errorMessage)
       setLoading(false)
     }
   }

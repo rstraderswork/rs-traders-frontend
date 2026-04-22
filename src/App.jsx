@@ -3,7 +3,7 @@ import HomePage from './pages/HomePage'
 import ProductsPage from './pages/ProductsPage'
 import BookingPage from './pages/BookingPage'
 import AdminLogin from './components/admin/AdminLogin'
-import AdminDashboard from './components/admin/AdminDashboard'
+import AdminDashboard from './components/admin/AdminDashboard_Updated'
 import Navbar from './components/public/Navbar'
 import Footer from './components/public/Footer'
 
