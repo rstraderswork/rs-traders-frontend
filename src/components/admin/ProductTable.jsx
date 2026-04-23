@@ -1,9 +1,4 @@
 export default function ProductTable({ products, categories, onEdit, onDelete }) {
-    const getCategoryName = (categoryId) => {
-      const category = categories.find(c => c.id === categoryId)
-      return category?.name || 'Unknown'
-    }
-  
     return (
       <div className="bg-white rounded-lg shadow-sm overflow-hidden">
         <div className="overflow-x-auto">
@@ -23,14 +18,14 @@ export default function ProductTable({ products, categories, onEdit, onDelete })
               {products.map(product => (
                 <tr key={product.id} className="hover:bg-gray-50 transition">
                   <td className="px-6 py-4">
-                    {product.image_url ? (
+                    {product.image_urls && product.image_urls.length > 0 ? (
                       <img 
-                        src={product.image_url} 
+                        src={product.image_urls[0]} 
                         alt={product.name}
                         className="h-12 w-12 object-cover rounded-lg border border-gray-200"
                       />
                     ) : (
-                      <span className="text-gray-400 text-sm">No Image</span>
+                      <span className="text-gray-400 text-sm">👕</span>
                     )}
                   </td>
                   <td className="px-6 py-4">
@@ -43,7 +38,7 @@ export default function ProductTable({ products, categories, onEdit, onDelete })
                   </td>
                   <td className="px-6 py-4">
                     <span className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-medium">
-                      {getCategoryName(product.category_id)}
+                      {product.category || 'Unknown'}
                     </span>
                   </td>
                   <td className="px-6 py-4 text-sm text-gray-600">
