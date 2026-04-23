@@ -38,7 +38,7 @@ export default function Navbar() {
 
           <div className="admin-dropdown">
             <Link to="/admin/login">Admin Login</Link>
-            <Link to="/admin/dashboard">Dashboard</Link>
+            
           </div>
         </div>
       </div>
