@@ -17,7 +17,10 @@ export default function ProductForm({ categories, product, onSubmit, onCancel })
 
   useEffect(() => {
     if (product) {
-      setFormData(product)
+      setFormData({
+        ...product,
+        image_urls: product.image_urls || []
+      })
     }
   }, [product])
 
