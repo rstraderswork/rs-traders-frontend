@@ -5,7 +5,7 @@ export default function ProductForm({ categories, product, onSubmit, onCancel })
   const [formData, setFormData] = useState({
     name: '',
     description: '',
-    category_id: '',
+    category: '',
     fabric_type: '',
     size_range: '',
     image_url: '',
@@ -46,8 +46,8 @@ export default function ProductForm({ categories, product, onSubmit, onCancel })
     if (!formData.name.trim()) {
       newErrors.name = 'Product name is required'
     }
-    if (!formData.category_id) {
-      newErrors.category_id = 'Category is required'
+    if (!formData.category) {
+      newErrors.category = 'Category is required'
     }
     
     setErrors(newErrors)
@@ -96,20 +96,20 @@ export default function ProductForm({ categories, product, onSubmit, onCancel })
               Category *
             </label>
             <select
-              name="category_id"
-              value={formData.category_id}
+              name="category"
+              value={formData.category}
               onChange={handleChange}
               className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition ${
-                errors.category_id ? 'border-red-500' : 'border-gray-300'
+                errors.category ? 'border-red-500' : 'border-gray-300'
               }`}
               required
             >
               <option value="">Select Category</option>
               {categories.map(cat => (
-                <option key={cat.id} value={cat.id}>{cat.name}</option>
+                <option key={cat.id} value={cat.name}>{cat.name}</option>
               ))}
             </select>
-            {errors.category_id && <p className="text-red-500 text-sm mt-1">{errors.category_id}</p>}
+            {errors.category && <p className="text-red-500 text-sm mt-1">{errors.category}</p>}
           </div>
         </div>
 
