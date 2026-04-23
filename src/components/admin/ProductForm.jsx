@@ -8,7 +8,7 @@ export default function ProductForm({ categories, product, onSubmit, onCancel })
     category: '',
     fabric_type: '',
     size_range: '',
-    image_url: '',
+    image_urls: [],
     is_featured: false
   })
 
@@ -36,7 +36,14 @@ export default function ProductForm({ categories, product, onSubmit, onCancel })
   const handleImageUpload = (imageUrl) => {
     setFormData(prev => ({
       ...prev,
-      image_url: imageUrl
+      image_urls: [...prev.image_urls, imageUrl]
+    }))
+  }
+
+  const removeImage = (index) => {
+    setFormData(prev => ({
+      ...prev,
+      image_urls: prev.image_urls.filter((_, i) => i !== index)
     }))
   }
 
@@ -155,22 +162,43 @@ export default function ProductForm({ categories, product, onSubmit, onCancel })
               onChange={handleChange}
               placeholder="e.g., XXS-XXL"
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
-            />
-          </div>
-        </div>
-
-        {/* Image Upload */}
-        <div>
-          <label className="block text-sm font-semibold text-gray-700 mb-2">
-            Product Image
+            />s (Multiple) 📸
           </label>
+          <p className="text-xs text-gray-600 mb-3">Upload multiple images - first one will be the primary image</p>
           <ImageUpload
             onImageUpload={handleImageUpload}
-            currentImage={formData.image_url}
             uploading={uploading}
             setUploading={setUploading}
           />
-          {formData.image_url && (
+          
+          {formData.image_urls.length > 0 && (
+            <div className="mt-4">
+              <p className="text-sm text-gray-600 mb-3">
+                {formData.image_urls.length} image{formData.image_urls.length !== 1 ? 's' : ''} uploaded:
+              </p>
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                {formData.image_urls.map((url, index) => (
+                  <div key={index} className="relative group">
+                    <img 
+                      src={url} 
+                      alt={`Preview ${index + 1}`} 
+                      className="w-full h-32 object-cover border border-gray-300 rounded-lg"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => removeImage(index)}
+                      className="absolute top-1 right-1 bg-red-500 text-white p-1 rounded-full opacity-0 group-hover:opacity-100 transition"
+                    >
+                      ✕
+                    </button>
+                    {index === 0 && (
+                      <span className="absolute bottom-1 left-1 bg-blue-500 text-white text-xs px-2 py-1 rounded">
+                        Primary
+                      </span>
+                    )}
+                  </div>
+                ))}
+              </divData.image_url && (
             <div className="mt-4">
               <p className="text-sm text-gray-600 mb-2">Image Preview:</p>
               <img 

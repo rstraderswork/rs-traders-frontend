@@ -2,13 +2,53 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 export default function ProductCard({ product }) {
-  const [showSampleModal, setShowSampleModal] = useState(false)
+  const [currentImageIndex, setCurrentImageIndex] = useState(0)
+  const images = product.image_urls && product.image_urls.length > 0 ? product.image_urls : ['👕']
+  const isPlaceholder = typeof images[currentImageIndex] !== 'string' || !images[currentImageIndex].startsWith('http')
+
+  const nextImage = () => {
+    setCurrentImageIndex((prev) => (prev + 1) % images.length)
+  }
+
+  const prevImage = () => {
+    setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length)
+  }
 
   return (
     <>
       <div className="bg-white rounded-xl border border-gray-200 overflow-hidden hover:shadow-lg transition transform hover:scale-105">
-        <div className="w-full h-48 bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center text-6xl relative">
-          👕
+        <div className="relative w-full h-48 bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center text-6xl group">
+          {isPlaceholder ? (
+            <span>👕</span>
+          ) : (
+            <img 
+              src={images[currentImageIndex]} 
+              alt={product.name}
+              className="w-full h-full object-cover"
+            />
+          )}
+          
+          {/* Image Navigation - only show if multiple images */}
+          {images.length > 1 && !isPlaceholder && (
+            <>
+              <button
+                onClick={prevImage}
+                className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black/50 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition"
+              >
+                ◀
+              </button>
+              <button
+                onClick={nextImage}
+                className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black/50 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition"
+              >
+                ▶
+              </button>
+              <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 bg-black/50 text-white text-xs px-2 py-1 rounded">
+                {currentImageIndex + 1}/{images.length}
+              </div>
+            </>
+          )}
+
           <span className="absolute top-2 right-2 bg-blue-600 text-white text-xs font-bold px-2 py-1 rounded">New</span>
         </div>
 
