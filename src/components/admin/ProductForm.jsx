@@ -162,7 +162,14 @@ export default function ProductForm({ categories, product, onSubmit, onCancel })
               onChange={handleChange}
               placeholder="e.g., XXS-XXL"
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
-            />s (Multiple) 📸
+            />
+          </div>
+        </div>
+
+        {/* Image Upload */}
+        <div>
+          <label className="block text-sm font-semibold text-gray-700 mb-2">
+            Product Images (Multiple) 📸
           </label>
           <p className="text-xs text-gray-600 mb-3">Upload multiple images - first one will be the primary image</p>
           <ImageUpload
@@ -198,14 +205,7 @@ export default function ProductForm({ categories, product, onSubmit, onCancel })
                     )}
                   </div>
                 ))}
-              </divData.image_url && (
-            <div className="mt-4">
-              <p className="text-sm text-gray-600 mb-2">Image Preview:</p>
-              <img 
-                src={formData.image_url} 
-                alt="Preview" 
-                className="max-w-xs h-auto border border-gray-300 rounded-lg"
-              />
+              </div>
             </div>
           )}
         </div>
