@@ -1,8 +1,9 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
 export default function ProductCard({ product }) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
+  const [isHovering, setIsHovering] = useState(false)
   const images = product.image_urls && product.image_urls.length > 0 ? product.image_urls : ['👕']
   const isPlaceholder = typeof images[currentImageIndex] !== 'string' || !images[currentImageIndex].startsWith('http')
 
@@ -14,10 +15,25 @@ export default function ProductCard({ product }) {
     setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length)
   }
 
+  // Auto-change image every 3 seconds when hovering
+  useEffect(() => {
+    if (!isHovering || images.length <= 1 || isPlaceholder) return
+
+    const interval = setInterval(() => {
+      nextImage()
+    }, 3000)
+
+    return () => clearInterval(interval)
+  }, [isHovering, images.length, isPlaceholder, currentImageIndex])
+
   return (
     <>
       <div className="bg-white rounded-xl border border-gray-200 overflow-hidden hover:shadow-lg transition transform hover:scale-105">
-        <div className="relative w-full h-48 bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center text-6xl group">
+        <div 
+          className="relative w-full h-48 bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center text-6xl group"
+          onMouseEnter={() => setIsHovering(true)}
+          onMouseLeave={() => setIsHovering(false)}
+        >
           {isPlaceholder ? (
             <span>👕</span>
           ) : (
