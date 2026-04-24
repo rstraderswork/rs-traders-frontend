@@ -15,13 +15,13 @@ export default function ProductCard({ product }) {
     setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length)
   }
 
-  // Auto-change image every 3 seconds when hovering
+  // Auto-change image every 2 seconds when hovering
   useEffect(() => {
     if (!isHovering || images.length <= 1 || isPlaceholder) return
 
     const interval = setInterval(() => {
       nextImage()
-    }, 3000)
+    }, 2000)
 
     return () => clearInterval(interval)
   }, [isHovering, images.length, isPlaceholder, currentImageIndex])
@@ -30,7 +30,7 @@ export default function ProductCard({ product }) {
     <>
       <div className="bg-white rounded-xl border border-gray-200 overflow-hidden hover:shadow-lg transition transform hover:scale-105">
         <div 
-          className="relative w-full h-48 bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center text-6xl group"
+          className="relative w-full h-48 bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center text-6xl group cursor-pointer"
           onMouseEnter={() => setIsHovering(true)}
           onMouseLeave={() => setIsHovering(false)}
         >
