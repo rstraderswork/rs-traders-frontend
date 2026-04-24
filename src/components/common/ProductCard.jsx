@@ -33,13 +33,13 @@ export default function ProductCard({ product }) {
             <>
               <button
                 onClick={prevImage}
-                className="absolute left-1 top-1/2 transform -translate-y-1/2 bg-black/50 text-white p-1 rounded-full text-sm opacity-0 group-hover:opacity-100 transition"
+                className="absolute left-1 top-1/2 transform -translate-y-1/2 bg-black/50 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs opacity-0 group-hover:opacity-100 transition"
               >
                 ◀
               </button>
               <button
                 onClick={nextImage}
-                className="absolute right-1 top-1/2 transform -translate-y-1/2 bg-black/50 text-white p-1 rounded-full text-sm opacity-0 group-hover:opacity-100 transition"
+                className="absolute right-1 top-1/2 transform -translate-y-1/2 bg-black/50 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs opacity-0 group-hover:opacity-100 transition"
               >
                 ▶
               </button>
